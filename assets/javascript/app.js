@@ -60,7 +60,7 @@ $(document).ready(function () {
                 var R = $("<p>").text("Rating:-" + rating);
                 displayDiv.prepend(R)
 
-                $("#display-images").append(displayDiv);
+                $("#gif").append(displayDiv);
             }
             })
         }
