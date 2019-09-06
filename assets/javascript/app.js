@@ -6,23 +6,23 @@ $(document).ready(function () {
     // create, dispaly, add data name to btns
     function renderButtons() {
 
-        $("#buttons").empty();
+        $("#display-buttons").empty();
 
-        for (var i = 0; i < buttons.length; i++) {
+        for (var i = 0; i < topics.length; i++) {
 
             var newButton = $("<button>")
             newButton.attr("class", "btn btn-default");
             newButton.attr("id", "input")
             newButton.attr("data-name", topics[i]);
             newButton.text(topics[i]);
-            $("#buttons").append(newButton);
+            $("#topics").append(newButton);
         }
     }
     renderButtons();
 
     function renderGif() {
 
-        $("#gifs").empty();
+        $("#display-images").empty();
         var input = $(this).attr("data-name");
         var limit = 10;
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&limit=" + limit + "&api_key=JLAlqk75iH4NTa5Gtdb4b2EXDrJ9HCAF";
@@ -62,6 +62,44 @@ $(document).ready(function () {
 
                 $("#gif").append(displayDiv);
             }
-            })
+            });
         }
+        $(document).on("click", "#input", renderGif); 
     
+
+     //    function to change the image status
+
+
+           function imageChangeState(){
+
+            var state = $(this).attr("data-state");
+            var animateImage = $(this).attr("data-animate");
+            var stillImage = $(this).attr("data-still");
+
+         if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+            } 
+          else 
+          {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+          }       
+        }
+         
+         
+        $(document).on("click", ".gif", imageChangeState);
+
+     // add search input
+
+    $("#submitPress").on("click", function(){
+
+        var input = $("#user-input").val().trim();
+        form.reset();
+        topics.push(input);
+                
+        renderButtons();
+
+        return false;
+    })
+})
