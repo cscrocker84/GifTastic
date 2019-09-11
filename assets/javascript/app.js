@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var topics = ["Dogs", "Cats", "Sharks", "Birds"];
+    var startTopics = ["Dogs", "Cats", "Sharks", "Birds"];
 
 
     // create, dispaly, add data name to btns
@@ -8,14 +8,14 @@ $(document).ready(function () {
 
         $("#display-buttons").empty();
 
-        for (var i = 0; i < topics.length; i++) {
+        for (var i = 0; i < startTopics.length; i++) {
 
             var newButton = $("<button>")
             newButton.attr("class", "btn btn-default");
             newButton.attr("id", "input")
-            newButton.attr("data-name", topics[i]);
-            newButton.text(topics[i]);
-            $("#topics").append(newButton);
+            newButton.attr("data-name", startTopics[i]);
+            newButton.text(startTopics[i]);
+            $("#display-buttons").append(newButton);
         }
     }
     renderButtons();
@@ -25,7 +25,7 @@ $(document).ready(function () {
         $("#display-images").empty();
         var input = $(this).attr("data-name");
         var limit = 10;
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&limit=" + limit + "&api_key=JLAlqk75iH4NTa5Gtdb4b2EXDrJ9HCAF";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&limit=" + limit + "&api_key=WlsNIHSGrkfePf38NKHYoEhH4bxbRmxV";
 
         $.ajax({
             url: queryURL,
@@ -60,7 +60,7 @@ $(document).ready(function () {
                 var R = $("<p>").text("Rating:-" + rating);
                 displayDiv.prepend(R)
 
-                $("#gif").append(displayDiv);
+                $("#display-images").append(displayDiv);
             }
             });
         }
@@ -96,7 +96,7 @@ $(document).ready(function () {
 
         var input = $("#user-input").val().trim();
         form.reset();
-        topics.push(input);
+        startTopics.push(input);
                 
         renderButtons();
 
